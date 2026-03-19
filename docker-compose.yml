@@ -1,5 +1,3 @@
-version: "3.8"
-
 services:
   prometheus:
     image: prom/prometheus
@@ -34,17 +32,14 @@ services:
       - "--path.rootfs=/host"
 
   samba:
-    image: storage-samba
+    image: altotenor/storage-samba:1.0.25
     container_name: samba
     restart: unless-stopped
     ports:
       - "139:139"
       - "445:445"
     volumes:
-      - <storage-location>:/mount
-    command: >
-      -u "alto;1234"
-      -s "share;/mount;yes;no;no;all;none"
+      - "${SAMBA_GIT_PATH}:/mount"
 
 volumes:
   prometheus_data:
