@@ -28,6 +28,7 @@ services:
     volumes:
       - /:/host:ro,rslave
       - /sys:/sys:ro
+      - /run/udev:/run/udev:ro
     command:
       - "--path.rootfs=/host"
 
